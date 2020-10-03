@@ -100,7 +100,13 @@ export default {
               !this.space.core.includes(proposal[1].address)
             )
               return false;
-
+              
+            if (
+              this.selectedState === 'invalid' &&
+              this.space.invalid.includes(proposal[1].authorIpfsHash)
+            )
+              return true;
+              
             if (
               ['core', 'all'].includes(this.selectedState) &&
               this.space.core.includes(proposal[1].address)
@@ -112,12 +118,6 @@ export default {
               this.space.invalid.includes(proposal[1].authorIpfsHash)
             )
               return false;
-
-            if (
-              this.selectedState === 'invalid' &&
-              this.space.invalid.includes(proposal[1].authorIpfsHash)
-            )
-              return true;
 
             if (this.selectedState === 'all') return true;
 
